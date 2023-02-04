@@ -1,35 +1,42 @@
 package com.travello.helpers;
 
 import com.travello.models.GroupData;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-@NoArgsConstructor
-@AllArgsConstructor
-public class GroupsPage {
-    private WebDriver wd;
+public class GroupsPage extends BaseHelper{
 
-    public void submitGroupCreation() {
-        wd.findElement(By.xpath("//input[@value='Enter information']")).click();
+    public GroupsPage(WebDriver wd) {
+        super(wd);
     }
 
     public void fillGroupInformation(GroupData group) {
-        wd.findElement(By.xpath("//input[@name='group_name']")).sendKeys(group.getGroupTitle());
-        wd.findElement(By.xpath("//textarea[@name='group_header']")).sendKeys(group.getGroupHeader());
-        wd.findElement(By.xpath("//textarea[@name='group_footer']")).sendKeys(group.getGroupFooter());
+        type(By.xpath("//input[@name='group_name']"), group.getGroupTitle());
+        type(By.xpath("//textarea[@name='group_header']"), group.getGroupHeader());
+        type(By.xpath("//textarea[@name='group_footer']"), group.getGroupFooter());
     }
 
     public void initGroupCreation() {
-        wd.findElement(By.xpath("//input[@value='New group'][1]")).click();
+        click(By.xpath("(//input[@value='New group'])[1]"));
+    }
+
+    public void initGroupEditing() {
+        click(By.xpath("(//input[@value='Edit group'])[1]"));
+    }
+
+    public void submitGroupCreation() {
+        click(By.xpath("//input[@value='Enter information']"));
+    }
+
+    public void submitGroupEditing() {
+        click(By.xpath("//input[@value='Update']"));
     }
 
     public void submitGroupDeletion() {
-        wd.findElement(By.xpath("//input[@value='Delete group(s)'][1]")).click();
+        click(By.xpath("//input[@value='Delete group(s)'][1]"));
     }
 
     public void selectGroup() {
-        wd.findElement(By.xpath("(//input[@name='selected[]'])[1]")).click();
+        click(By.xpath("(//input[@name='selected[]'])[1]"));
     }
 }

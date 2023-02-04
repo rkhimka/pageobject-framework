@@ -6,12 +6,13 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
-    protected final WebAppManager app = new WebAppManager();
+    protected final WebAppManager app = new WebAppManager(false, "firefox",
+            "http://localhost/addressbook/");
 
     @BeforeTest
     public void setup() {
         app.init();
-        app.getSession().loginUser(new LoginData("admin", "secret"));
+        app.getSession().login(new LoginData("admin", "secret"));
     }
 
     @AfterTest

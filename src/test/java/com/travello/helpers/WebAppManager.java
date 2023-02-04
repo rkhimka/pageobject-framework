@@ -2,25 +2,33 @@ package com.travello.helpers;
 
 import lombok.Data;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
 @Data
 public class WebAppManager {
+    //TODO: fetch isRemote value from env variables
+    private final DriverFactory driverFactory;
     public WebDriver wd;
-    private WebNavigation navigation;
+    private Navigation navigation;
     private GroupsPage groupsPage;
     private Session session;
+    private String url;
+
+    public WebAppManager(boolean isRemote, String browser, String url) {
+        driverFactory = new DriverFactory(isRemote, browser);
+        this.url = url;
+    }
 
     public void init() {
-        wd = new ChromeDriver();
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
+        wd = driverFactory.getDriver();
+//        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         wd.manage().window().maximize();
+        //TODO: set seconds as constant variable IMPLICIT_WAIT_SHORT
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        wd.get("http://localhost/addressbook/");
+        wd.get(url);
         groupsPage = new GroupsPage(wd);
-        navigation = new WebNavigation(wd);
+        navigation = new Navigation(wd);
         session = new Session(wd);
     }
 
@@ -28,6 +36,7 @@ public class WebAppManager {
         wd.quit();
     }
 
-
-
+    public DriverFactory getDriverFactory() {
+        return driverFactory;
+    }
 }
