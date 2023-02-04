@@ -1,5 +1,6 @@
-package com.travello.tests;
+package com.travello.tests.groups;
 
+import com.travello.tests.BaseTest;
 import org.testng.annotations.Test;
 
 public class DeleteGroupTest extends BaseTest {
@@ -11,5 +12,4 @@ public class DeleteGroupTest extends BaseTest {
         app.getGroupsPage().submitGroupDeletion();
         app.getNavigation().followGroupsPage();
     }
-
 }

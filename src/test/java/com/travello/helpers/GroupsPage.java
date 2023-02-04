@@ -4,7 +4,7 @@ import com.travello.models.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class GroupsPage extends BaseHelper{
+public class GroupsPage extends BaseHelper {
 
     public GroupsPage(WebDriver wd) {
         super(wd);
@@ -37,6 +37,8 @@ public class GroupsPage extends BaseHelper{
     }
 
     public void selectGroup() {
-        click(By.xpath("(//input[@name='selected[]'])[1]"));
+        if (!wd.findElement(By.xpath("(//input[@name='selected[]'])[1]")).isSelected()) {
+            click(By.xpath("(//input[@name='selected[]'])[1]"));
+        }
     }
 }

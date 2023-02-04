@@ -6,7 +6,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
-    protected final WebAppManager app = new WebAppManager(false, "firefox",
+    protected final WebAppManager app = new WebAppManager(false, "chrome",
             "http://localhost/addressbook/");
 
     @BeforeTest

@@ -21,15 +21,15 @@ public class DriverFactory {
 
     private WebDriver getLocalDriver() {
         WebDriver wd = null;
-        if (browser == Browser.CHROME.browserName()) {
+        if (browser.equals(Browser.CHROME.browserName())) {
             wd = new ChromeDriver();
-        } else if (browser == Browser.FIREFOX.browserName()) {
+        } else if (browser.equals(Browser.FIREFOX.browserName())) {
             wd = new FirefoxDriver();
         }
         return wd;
     }
 
     private WebDriver getRemoteDriver() {
-        return new ChromeDriver();
+        return null;
     }
 }

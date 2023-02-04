@@ -12,4 +12,7 @@ public class Navigation extends BaseHelper{
     public void followGroupsPage() {
         click(By.xpath("//a[text()='groups']"));
     }
+    public void followHomePage() {
+        click(By.xpath("//a[text()='home']"));
+    }
 }

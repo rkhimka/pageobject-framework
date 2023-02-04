@@ -12,6 +12,7 @@ public class WebAppManager {
     public WebDriver wd;
     private Navigation navigation;
     private GroupsPage groupsPage;
+    private ContactsPage contactsPage;
     private Session session;
     private String url;
 
@@ -25,9 +26,10 @@ public class WebAppManager {
 //        System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
         wd.manage().window().maximize();
         //TODO: set seconds as constant variable IMPLICIT_WAIT_SHORT
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         wd.get(url);
         groupsPage = new GroupsPage(wd);
+        contactsPage = new ContactsPage(wd);
         navigation = new Navigation(wd);
         session = new Session(wd);
     }
