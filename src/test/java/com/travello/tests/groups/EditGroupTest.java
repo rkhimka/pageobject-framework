@@ -9,6 +9,11 @@ public class EditGroupTest extends BaseTest {
     @Test
     public void editGroupTest() {
         app.getNavigation().followGroupsPage();
+        if (!app.getGroupsPage().isAnyGroupCreated()) {
+            app.getGroupsPage().createGroup(new GroupData("My test group",
+                    "test header", "test footer"));
+        }
+        app.getNavigation().followGroupsPage();
         app.getGroupsPage().selectGroup();
         app.getGroupsPage().initGroupEditing();
         app.getGroupsPage().fillGroupInformation(

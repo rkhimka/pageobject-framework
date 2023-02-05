@@ -10,6 +10,12 @@ public class GroupsPage extends BaseHelper {
         super(wd);
     }
 
+    public void createGroup(GroupData groupData) {
+        initGroupCreation();
+        fillGroupInformation(groupData);
+        submitGroupCreation();
+    }
+
     public void fillGroupInformation(GroupData group) {
         type(By.xpath("//input[@name='group_name']"), group.getGroupTitle());
         type(By.xpath("//textarea[@name='group_header']"), group.getGroupHeader());
@@ -40,5 +46,9 @@ public class GroupsPage extends BaseHelper {
         if (!wd.findElement(By.xpath("(//input[@name='selected[]'])[1]")).isSelected()) {
             click(By.xpath("(//input[@name='selected[]'])[1]"));
         }
+    }
+
+    public boolean isAnyGroupCreated() {
+        return isElementPresent(By.xpath("//input[@name='selected[]']"));
     }
 }
