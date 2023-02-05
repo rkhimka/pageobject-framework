@@ -3,16 +3,24 @@ package com.travello.helpers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Navigation extends BaseHelper{
+public class Navigation extends BaseHelper {
 
     public Navigation(WebDriver wd) {
         super(wd);
     }
 
     public void followGroupsPage() {
+        if (isElementPresent(By.xpath("//h1[text()='Groups']"))
+                && isElementPresent(By.xpath("(//input[@value='New group'])[1]"))) {
+            return;
+        }
         click(By.xpath("//a[text()='groups']"));
     }
+
     public void followHomePage() {
+        if (isElementPresent(By.xpath("//table[@id='maintable']"))) {
+            return;
+        }
         click(By.xpath("//a[text()='home']"));
     }
 }
