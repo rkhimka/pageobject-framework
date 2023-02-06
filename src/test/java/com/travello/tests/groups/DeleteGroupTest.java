@@ -14,8 +14,7 @@ public class DeleteGroupTest extends BaseTest {
     public void preconditionStep(){
         app.navigateTo().groupsPage();
         if (!app.groupsPage().isAnyGroupCreated()) {
-            app.groupsPage().create(new GroupData("My test group",
-                    "test header", "test footer"));
+            app.groupsPage().create(new GroupData().title("My test group"));
         }
     }
 

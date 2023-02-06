@@ -15,14 +15,16 @@ public class EditGroupTest extends BaseTest {
     public void preconditionStep(){
         app.navigateTo().groupsPage();
         if (!app.groupsPage().isAnyGroupCreated()) {
-            app.groupsPage().create(new GroupData("My test group",
-                    "test header", "test footer"));
+            app.groupsPage().create(new GroupData().title("My test group"));
         }
     }
 
     @Test
     public void editGroupTest() {
-        GroupData modifiedData = new GroupData("New group", "New header", "New footer");
+        GroupData modifiedData = new GroupData()
+                .title("New group")
+                .header("New header")
+                .footer("New footer");
         app.navigateTo().groupsPage();
         List<GroupData> groupsBefore = app.groupsPage().getGroups();
         int lastGroup = groupsBefore.size() - 1;
@@ -31,8 +33,8 @@ public class EditGroupTest extends BaseTest {
         Assert.assertEquals(groupsAfter.size(), groupsBefore.size());
         groupsBefore.remove(lastGroup);
         groupsBefore.add(modifiedData);
-        groupsBefore.sort(Comparator.comparing(GroupData::getGroupTitle));
-        groupsAfter.sort(Comparator.comparing(GroupData::getGroupTitle));
+        groupsBefore.sort(Comparator.comparing(GroupData::title));
+        groupsAfter.sort(Comparator.comparing(GroupData::title));
         Assert.assertEquals(groupsAfter, groupsBefore);
     }
 

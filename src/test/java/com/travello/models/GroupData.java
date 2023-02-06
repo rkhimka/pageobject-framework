@@ -1,19 +1,21 @@
 package com.travello.models;
 
-import com.travello.helpers.GroupsPage;
 import lombok.*;
+import lombok.experimental.Accessors;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@Accessors(fluent = true, chain = true)
 @ToString
 @EqualsAndHashCode
 public class GroupData {
-    private String groupTitle;
+
+    private String title;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private String groupHeader;
+    private String header;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-    private String groupFooter;
+    private String footer;
 }

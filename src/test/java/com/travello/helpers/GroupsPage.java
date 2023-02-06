@@ -31,7 +31,7 @@ public class GroupsPage extends BaseHelper {
         List<GroupData> groups = new ArrayList<>();
         List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
         for (WebElement e : elements) {
-            groups.add(new GroupData(e.getText(), null, null));
+            groups.add(new GroupData().title(e.getText()));
         }
         return groups;
     }
@@ -45,9 +45,9 @@ public class GroupsPage extends BaseHelper {
     }
 
     public void fillGroupInformation(GroupData group) {
-        type(By.xpath("//input[@name='group_name']"), group.getGroupTitle());
-        type(By.xpath("//textarea[@name='group_header']"), group.getGroupHeader());
-        type(By.xpath("//textarea[@name='group_footer']"), group.getGroupFooter());
+        type(By.xpath("//input[@name='group_name']"), group.title());
+        type(By.xpath("//textarea[@name='group_header']"), group.header());
+        type(By.xpath("//textarea[@name='group_footer']"), group.footer());
     }
 
     public int getGroupsCount() {
