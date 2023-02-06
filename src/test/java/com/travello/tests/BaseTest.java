@@ -2,20 +2,21 @@ package com.travello.tests;
 
 import com.travello.helpers.WebAppManager;
 import com.travello.models.LoginData;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
-    protected final WebAppManager app = new WebAppManager(false, "chrome",
+    protected static final WebAppManager app = new WebAppManager(false,
+            "chrome",
             "http://localhost/addressbook/");
 
-    @BeforeTest
+    @BeforeSuite
     public void setup() {
         app.init();
         app.getSession().login(new LoginData("admin", "secret"));
     }
 
-    @AfterTest
+    @AfterSuite
     public void teardown() {
         app.stop();
     }

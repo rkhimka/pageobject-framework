@@ -7,9 +7,9 @@ public class DeleteContactTest  extends BaseTest {
 
     @Test
     public void deleteContactSuccessTest() {
-        app.getContactsPage().selectFirstContact();
-        app.getContactsPage().initContactEditing();
-        app.getContactsPage().submitContactDeletion();
-        app.getNavigation().followHomePage();
+        app.contactsPage().selectFirstContact();
+        app.contactsPage().initContactEditing();
+        app.contactsPage().submitContactDeletion();
+        app.navigateTo().homePage();
     }
 }

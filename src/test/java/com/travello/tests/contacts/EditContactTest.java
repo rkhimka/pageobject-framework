@@ -8,11 +8,11 @@ public class EditContactTest extends BaseTest {
 
     @Test
     public void editContactTest() {
-        app.getContactsPage().selectFirstContact();
-        app.getContactsPage().initContactEditing();
-        app.getContactsPage().fillContactInformation(new ContactData("John", "Doe", "jDoe",
+        app.contactsPage().selectFirstContact();
+        app.contactsPage().initContactEditing();
+        app.contactsPage().fillContactInformation(new ContactData("John", "Doe", "jDoe",
                 "New Company", "new@mail.com", null), false);
-        app.getContactsPage().submitContactEditing();
-        app.getNavigation().followHomePage();
+        app.contactsPage().submitContactEditing();
+        app.navigateTo().homePage();
     }
 }

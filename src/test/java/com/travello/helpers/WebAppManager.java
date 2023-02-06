@@ -11,6 +11,19 @@ public class WebAppManager {
     private final DriverFactory driverFactory;
     public WebDriver wd;
     private Navigation navigation;
+
+    public Navigation navigateTo() {
+        return navigation;
+    }
+
+    public GroupsPage groupsPage() {
+        return groupsPage;
+    }
+
+    public ContactsPage contactsPage() {
+        return contactsPage;
+    }
+
     private GroupsPage groupsPage;
     private ContactsPage contactsPage;
     private Session session;
@@ -38,7 +51,4 @@ public class WebAppManager {
         wd.quit();
     }
 
-    public DriverFactory getDriverFactory() {
-        return driverFactory;
-    }
 }

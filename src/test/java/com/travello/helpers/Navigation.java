@@ -9,7 +9,7 @@ public class Navigation extends BaseHelper {
         super(wd);
     }
 
-    public void followGroupsPage() {
+    public void groupsPage() {
         if (isElementPresent(By.xpath("//h1[text()='Groups']"))
                 && isElementPresent(By.xpath("(//input[@value='New group'])[1]"))) {
             return;
@@ -17,7 +17,7 @@ public class Navigation extends BaseHelper {
         click(By.xpath("//a[text()='groups']"));
     }
 
-    public void followHomePage() {
+    public void homePage() {
         if (isElementPresent(By.xpath("//table[@id='maintable']"))) {
             return;
         }
