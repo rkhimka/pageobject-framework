@@ -10,7 +10,6 @@ import lombok.experimental.Accessors;
 @ToString
 @EqualsAndHashCode
 public class GroupData {
-
     private String title;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
