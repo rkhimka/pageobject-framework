@@ -39,6 +39,9 @@ public class GroupsPage extends BaseHelper {
 //        return groups;
 //    }
 
+    /**
+     * This method is rewritten for support of Groups wrapper
+     */
     public Groups getGroups() {
         Groups groups = new Groups();
         List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
