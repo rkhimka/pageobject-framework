@@ -1,10 +1,12 @@
 package com.travello.tests.groups;
 
 import com.travello.models.GroupData;
+import com.travello.models.Groups;
 import com.travello.tests.BaseTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Comparator;
 import java.util.List;
 
 import static com.travello.utils.CommonUtils.generateGroupName;
@@ -30,14 +32,18 @@ public class EditGroupTest extends BaseTest {
                 .header(generateRandomAlphanumericStr(50))
                 .footer(generateRandomAlphanumericStr(50));
         app.navigateTo().groupsPage();
-        List<GroupData> groupsBefore = app.groupsPage().getGroups();
+        Groups groupsBefore = app.groupsPage().getGroups();
         int lastGroupIndex = groupsBefore.size() - 1;
         GroupData groupToModify = groupsBefore.get(lastGroupIndex);
         app.groupsPage().edit(lastGroupIndex, modifiedData);
-        List<GroupData> groupsAfter = app.groupsPage().getGroups();
+        Groups groupsAfter = app.groupsPage().getGroups();
+        Groups g = groupsBefore.without(groupToModify).with(modifiedData);
 
+        g.sort(Comparator.comparing(GroupData::title));
+        groupsAfter.sort(Comparator.comparing(GroupData::title));
         assertThat(groupsAfter.size(), equalTo(groupsBefore.size()));
-        assertThat(groupsAfter.contains(modifiedData), is(true));
-        assertThat(groupsAfter.contains(groupToModify), is(false));
+        assertThat(groupsAfter, equalTo(g));
+//        assertThat(groupsAfter.contains(modifiedData), is(true));
+//        assertThat(groupsAfter.contains(groupToModify), is(false));
     }
 }

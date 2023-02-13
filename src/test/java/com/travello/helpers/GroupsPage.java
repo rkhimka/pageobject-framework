@@ -1,6 +1,7 @@
 package com.travello.helpers;
 
 import com.travello.models.GroupData;
+import com.travello.models.Groups;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -29,8 +30,17 @@ public class GroupsPage extends BaseHelper {
         returnToGroupsPage();
     }
 
-    public List<GroupData> getGroups() {
-        List<GroupData> groups = new ArrayList<>();
+//    public List<GroupData> getGroups() {
+//        List<GroupData> groups = new ArrayList<>();
+//        List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
+//        for (WebElement e : elements) {
+//            groups.add(new GroupData().title(e.getText()));
+//        }
+//        return groups;
+//    }
+
+    public Groups getGroups() {
+        Groups groups = new Groups();
         List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
         for (WebElement e : elements) {
             groups.add(new GroupData().title(e.getText()));
@@ -74,7 +84,8 @@ public class GroupsPage extends BaseHelper {
     }
 
     public void selectGroup(int index) {
-        WebElement group = wd.findElements(By.xpath("//input[@name='selected[]']")).get(index);
+        List<WebElement> groups = wd.findElements(By.xpath("//input[@name='selected[]']"));
+        WebElement group = groups.get(index);
         if (!group.isSelected()) {
             group.click();
         }
