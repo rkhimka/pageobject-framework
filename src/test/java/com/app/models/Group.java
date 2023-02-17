@@ -1,4 +1,4 @@
-package com.travello.models;
+package com.app.models;
 
 import lombok.*;
 import lombok.experimental.Accessors;
@@ -9,7 +9,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true, chain = true)
 @ToString
 @EqualsAndHashCode
-public class GroupData {
+public class Group {
     private String title;
     @ToString.Exclude
     @EqualsAndHashCode.Exclude

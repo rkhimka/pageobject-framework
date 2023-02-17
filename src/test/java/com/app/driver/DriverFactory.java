@@ -1,4 +1,4 @@
-package com.travello.helpers;
+package com.app.driver;
 
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.WebDriver;

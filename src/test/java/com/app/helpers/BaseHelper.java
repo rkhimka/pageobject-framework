@@ -1,4 +1,4 @@
-package com.travello.helpers;
+package com.app.helpers;
 
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.By;
@@ -29,6 +29,10 @@ public class BaseHelper {
 
     public void select(WebElement element, String text) {
         new Select(element).selectByVisibleText(text);
+    }
+
+    public void acceptAlert() {
+        wd.switchTo().alert().accept();
     }
 
     public boolean isElementPresent(By locator) {

@@ -1,72 +1,62 @@
-package com.travello.helpers;
+package com.app.helpers;
 
-import com.travello.models.GroupData;
-import com.travello.models.Groups;
+import com.app.models.Group;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class GroupsPage extends BaseHelper {
+    private List<Group> groupsCache = null;
 
     public GroupsPage(WebDriver wd) {
         super(wd);
     }
 
+    public void create(Group group) {
+        initGroupCreation();
+        fillGroupInformation(group);
+        submitGroupCreation();
+        groupsCache = null;
+        returnToGroupsPage();
+    }
+
     public void delete(int groupIndex) {
         selectGroup(groupIndex);
         submitGroupDeletion();
+        groupsCache = null;
         returnToGroupsPage();
     }
 
-    public void create(GroupData groupData) {
-        initGroupCreation();
-        fillGroupInformation(groupData);
-        submitGroupCreation();
-        returnToGroupsPage();
-    }
-
-//    public List<GroupData> getGroups() {
-//        List<GroupData> groups = new ArrayList<>();
-//        List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
-//        for (WebElement e : elements) {
-//            groups.add(new GroupData().title(e.getText()));
-//        }
-//        return groups;
-//    }
-
-    /**
-     * This method is rewritten for support of Groups wrapper
-     */
-    public Groups getGroups() {
-        Groups groups = new Groups();
-        List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
-        for (WebElement e : elements) {
-            groups.add(new GroupData().title(e.getText()));
-        }
-        return groups;
-    }
-
-    public void edit(int groupIndex, GroupData modifiedGroup) {
+    public void edit(int groupIndex, Group modifiedGroup) {
         selectGroup(groupIndex);
         initGroupEditing();
         fillGroupInformation(modifiedGroup);
         submitGroupEditing();
+        groupsCache = null;
         returnToGroupsPage();
     }
 
-    public void fillGroupInformation(GroupData group) {
+    public List<Group> getAll() {
+        if (groupsCache == null) {
+            groupsCache = new ArrayList<>();
+            List<WebElement> elements = wd.findElements(By.xpath("//span[@class='group']"));
+            for (WebElement e : elements) {
+                groupsCache.add(new Group().title(e.getText()));
+            }
+        }
+        return groupsCache;
+    }
+
+    public void fillGroupInformation(Group group) {
         type(By.xpath("//input[@name='group_name']"), group.title());
         type(By.xpath("//textarea[@name='group_header']"), group.header());
         type(By.xpath("//textarea[@name='group_footer']"), group.footer());
     }
 
-    public int getGroupsCount() {
-        //TODO: add followGroupsPage method here
+    public int groupsCount() {
         return wd.findElements(By.xpath("//input[@name='selected[]']")).size();
     }
 
@@ -82,7 +72,7 @@ public class GroupsPage extends BaseHelper {
         return isElementPresent(By.xpath("//input[@name='selected[]']"));
     }
 
-    public void returnToGroupsPage(){
+    public void returnToGroupsPage() {
         click(By.xpath("//a[text()='group page']"));
     }
 

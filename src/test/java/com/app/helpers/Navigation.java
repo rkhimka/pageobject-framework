@@ -1,4 +1,4 @@
-package com.travello.helpers;
+package com.app.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

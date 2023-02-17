@@ -1,6 +1,6 @@
-package com.travello.helpers;
+package com.app.helpers;
 
-import com.travello.models.LoginData;
+import com.app.models.Login;
 import lombok.Getter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +12,7 @@ public class Session extends BaseHelper {
         super(wd);
     }
 
-    public void login(LoginData credentials) {
+    public void login(Login credentials) {
         type(By.xpath("//input[@name='user']"), credentials.getLogin());
         type(By.xpath("//input[@name='pass']"), credentials.getPassword());
         click(By.xpath("//input[@value='Login']"));
