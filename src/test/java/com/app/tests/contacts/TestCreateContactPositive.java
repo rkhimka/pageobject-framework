@@ -9,13 +9,16 @@ import org.testng.annotations.Test;
 import java.util.Comparator;
 import java.util.List;
 
+import static com.app.data.constants.TestFeatures.CONTACTS;
+import static com.app.data.constants.TestTypes.POSITIVE;
+import static com.app.data.constants.TestTypes.SMOKE;
 import static com.app.data.testdata.ContactData.getContactData;
 import static com.app.data.testdata.GroupData.getGroupData;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class CreateContactTest extends BaseTest {
+public class TestCreateContactPositive extends BaseTest {
     private final int FIRST = 0;
     private Group testGroup;
 
@@ -30,7 +33,7 @@ public class CreateContactTest extends BaseTest {
         }
     }
 
-    @Test
+    @Test(groups = {SMOKE, POSITIVE, CONTACTS})
     public void createContactTest() {
         Contact newContact = getContactData().groupName(testGroup.title());
 

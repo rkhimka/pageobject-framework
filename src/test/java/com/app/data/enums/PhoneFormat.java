@@ -1,4 +1,4 @@
-package com.app.data.constants;
+package com.app.data.enums;
 
 public enum PhoneFormat {
         SIMPLE,

@@ -1,0 +1,19 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="smoke">
+    <test name="ui-test-suite-smoke" preserve-order="true">
+<!--        <groups>-->
+<!--            <run>-->
+<!--                <include name="positive"/>-->
+<!--            </run>-->
+<!--        </groups>-->
+
+<!--        <packages>-->
+<!--            <package name="com.app.tests.*"/>-->
+<!--        </packages>-->
+                <classes>
+                    <class name="com.app.tests.groups.TestCreateGroupPositive"/>
+                    <class name="com.app.tests.groups.TestEditGroupPositive"/>
+                    <class name="com.app.tests.groups.TestDeleteGroupPositive"/>
+                </classes>
+    </test>
+</suite>

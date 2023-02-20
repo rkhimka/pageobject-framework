@@ -1,6 +1,6 @@
 package com.app.utils;
 
-import com.app.data.constants.PhoneFormat;
+import com.app.data.enums.PhoneFormat;
 import org.apache.commons.lang3.RandomStringUtils;
 
 public class CommonUtils {

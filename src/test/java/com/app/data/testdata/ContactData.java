@@ -1,6 +1,6 @@
 package com.app.data.testdata;
 
-import com.app.data.constants.PhoneFormat;
+import com.app.data.enums.PhoneFormat;
 import com.app.models.Contact;
 
 import java.util.List;

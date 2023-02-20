@@ -7,12 +7,14 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.app.data.constants.TestFeatures.GROUPS;
+import static com.app.data.constants.TestTypes.*;
 import static com.app.data.testdata.GroupData.getGroupData;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeleteGroupTest extends BaseTest {
+public class TestEditGroupPositive extends BaseTest {
 
     @BeforeMethod
     public void preconditionStep() {
@@ -22,16 +24,20 @@ public class DeleteGroupTest extends BaseTest {
         }
     }
 
-    @Test
-    public void deleteGroupSuccessTest() {
+    @Test(groups = {GROUPS})
+    public void editGroupTest() {
+        Group modifiedData = getGroupData();
+
         app.navigateTo().groupsPage();
         List<Group> before = app.groupsPage().getAll();
         int lastGroupIndex = before.size() - 1;
-        Group groupToDelete = before.get(lastGroupIndex);
-        app.groupsPage().delete(lastGroupIndex);
+        Group groupToModify = before.get(lastGroupIndex);
+        app.groupsPage().edit(lastGroupIndex, modifiedData);
 
-        assertThat(app.groupsPage().groupsCount(), equalTo(before.size() - 1));
+        assertThat(app.groupsPage().groupsCount(), equalTo(before.size()));
         List<Group> after = app.groupsPage().getAll();
-        assertThat(after.contains(groupToDelete), is(false));
+
+        assertThat(after.contains(groupToModify), is(false));
+        assertThat(after.contains(modifiedData), is(true));
     }
 }

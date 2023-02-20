@@ -8,13 +8,16 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static com.app.data.constants.TestFeatures.CONTACTS;
+import static com.app.data.constants.TestTypes.POSITIVE;
+import static com.app.data.constants.TestTypes.SMOKE;
 import static com.app.data.testdata.ContactData.getContactData;
 import static com.app.data.testdata.GroupData.getGroupData;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeleteContactTest  extends BaseTest {
+public class TestDeleteContactPositive extends BaseTest {
     private final int FIRST = 0;
     Contact testContact;
 
@@ -37,7 +40,7 @@ public class DeleteContactTest  extends BaseTest {
         }
     }
 
-    @Test
+    @Test(groups = {SMOKE, POSITIVE, CONTACTS})
     public void deleteContactSuccessTest() {
         List<Contact> before = app.contactsPage().getAll();
         app.contactsPage().delete(FIRST);

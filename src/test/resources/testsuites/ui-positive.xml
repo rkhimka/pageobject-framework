@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="positive" verbose="1">
+    <test name="ui-test-suite-regression" preserve-order="true">
+        <groups>
+            <run>
+                <include name="positive"/>
+            </run>
+        </groups>
+    </test>
+
+    <packages>
+        <package name="com.app.tests.*"/>
+    </packages>
+</suite>

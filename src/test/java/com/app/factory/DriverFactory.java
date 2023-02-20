@@ -1,4 +1,4 @@
-package com.app.driver;
+package com.app.factory;
 
 import lombok.AllArgsConstructor;
 import org.openqa.selenium.WebDriver;
